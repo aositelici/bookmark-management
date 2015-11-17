@@ -5,9 +5,14 @@ $(document).ready(function(){
   $("input:text").bind("input propertychange",function(){
 
     var origin = $(this).val();
+    clearHighLight(bookmarks);
     highLightMatchingword(origin);
   });
 });
+
+function clearHighLight(bookmarks) {
+  $("div").html(bookmarks);
+}
 
 function highLightMatchingword(origin) {
   if(origin !== "") {
