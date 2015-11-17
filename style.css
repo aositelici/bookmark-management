@@ -3,6 +3,25 @@ body {
   padding-top: 40px;
 }
 .search {
-  height: 30px;
-  width: 1000px;
+  height: 35px;
+  width: 800px;
+}
+.content {
+  margin: 50px 200px 20px 200px;
+  text-align: left;
+}
+.bookmark {
+  margin-bottom: 0px;
+  font-size: 23px;
+}
+.date {
+  margin-top: 2px;
+  text-align: right;
+  font-style: oblique;
+}
+.line {
+  border:1px dashed ;
+  border-bottom:0;
+
+
 }
