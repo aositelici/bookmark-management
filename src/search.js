@@ -1,12 +1,20 @@
 $(document).ready(function(){
 
-  var bookmarks = $("div").html();
+  $.getJSON("../bookmark.json",function(result){
+    $.each(result, function(i, field){
 
-  $("input:text").bind("input propertychange",function(){
+      var content=$("<p></p>").text(field["title"]);
+      $("div").append(content);
+    });
 
-    var origin = $(this).val();
-    clearHighLight(bookmarks);
-    highLightMatchingword(origin);
+    var bookmarks = $("div").html();
+
+    $("input:text").bind("input propertychange",function(){
+
+      var origin = $(this).val();
+      clearHighLight(bookmarks);
+      highLightMatchingword(origin);
+    });
   });
 });
 
