@@ -1,16 +1,14 @@
 $(document).ready(function(){
 
   $.getJSON("../bookmark.json",function(result){
-    $.each(result, function(i, field){
 
+    $.each(result, function(i, field){
       var content=$("<p></p>").text(field["title"]);
       $("div").append(content);
     });
 
     var bookmarks = $("div").html();
-
     $("input:text").bind("input propertychange",function(){
-
       var origin = $(this).val();
       clearHighLight(bookmarks);
       highLightMatchingword(origin);
