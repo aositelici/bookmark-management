@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $.getJSON("../bookmark.json",function(result){
+  $.getJSON("bookmark.json",function(result){
 
     $.each(result, function(i, field){
       var content=$("<p></p>").text(field["title"]).addClass("bookmark");
