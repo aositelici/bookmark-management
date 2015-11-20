@@ -1,21 +1,16 @@
 $(document).ready(function(){
-  var data;
 
-  $.ajaxSettings.async = false;
-  $.getJSON("bookmark.json",function(bookmarks){
-      data = bookmarks;
+  $.getJSON("bookmark.json", function(data){
+    $.each(data, function(i, field){
+      appendbookmark(field.title,field.created);
+    });
+
+    var bookmarks = $(".content").html();
+    $("input:text").bind("input propertychange",function(){
+      var inputWord = $(this).val();
+      highLightMatchingword(inputWord ,data, bookmarks);
+    });
   });
-
-  $.each(data, function(i, field){
-    appendbookmark(field.title,field.created);
-  });
-
-  var bookmarks = $(".content").html();
-  $("input:text").bind("input propertychange",function(){
-    var inputWord = $(this).val();
-    highLightMatchingword(inputWord ,data);
-  });
-
 
   function appendbookmark(title,createdDate) {
     var content='<p class="bookmark">' + title + '</p>';
@@ -28,11 +23,11 @@ $(document).ready(function(){
   }
 
   function getFormatDate(number) {
-    var date = new Date(parseInt(number));
+    var date = new Date(parseInt(number)*1000);
     return 'created@' + date.getFullYear() + '-' + (date.getMonth()+1) + '-' + (date.getDate()+1);
   }
 
-  function highLightMatchingword(inputWord, data) {
+  function highLightMatchingword(inputWord, data, bookmarks) {
     if(inputWord !== "") {
       clearHtml();
       var patten = new RegExp("("+inputWord+")","ig");
