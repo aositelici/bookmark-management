@@ -30,15 +30,16 @@ $(document).ready(function(){
   function highLightMatchingword(inputWord, data, bookmarks) {
     if(inputWord !== "") {
       clearHtml();
-      var patten = new RegExp("("+inputWord+")","ig");
-      var filteingData = data.filter(function (subData){
-        return patten.test(subData.title);
-      });
 
-      filteingData.map(function (subData){
+      var patten = new RegExp("("+inputWord+")","ig");
+      data.filter(function (subData){
+        return patten.test(subData.title);
+      })
+      .map(function (subData){
         var highLightBookmark = subData.title.replace(patten,'<span style="background-color:#f54698">'+'$1'+'</span>');
         appendbookmark(highLightBookmark,subData.created);
       });
+
     } else {
       showInitBookmark(bookmarks);
     }
